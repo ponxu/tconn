@@ -1,3 +1,3 @@
 # usage 
 
-go install github.com/ponxu/tconn
+go get -u github.com/ponxu/tconn
