@@ -50,7 +50,13 @@ func (s *Server) Start() {
             panic(err)
         }
     default:
-        panic("Unkown Protocol: " + s.Protocol)
+        if s.Adapter != nil {
+            if err := s.Adapter.Accept(s); err != nil {
+                panic(err)
+            }
+        } else {
+            panic("Unkown Protocol: " + s.Protocol)
+        }
     }
 }
 
