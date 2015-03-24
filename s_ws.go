@@ -2,6 +2,7 @@ package tconn
 
 import (
     "code.google.com/p/go.net/websocket"
+    "log"
     "net/http"
     _ "net/http/pprof"
 )
@@ -9,9 +10,13 @@ import (
 type WSAdapter struct{}
 
 func (a *WSAdapter) Accept(s *Server) error {
-    http.Handle("/", websocket.Handler(func(c *websocket.Conn) {
+    if s.WSEnterPoint == "" {
+        s.WSEnterPoint = "/"
+    }
+    http.Handle(s.WSEnterPoint, websocket.Handler(func(c *websocket.Conn) {
         s.ProcessConn(c)
     }))
+    log.Println("WebSocket accept at：", s.WSEnterPoint, s.Addr)
     return http.ListenAndServe(s.Addr, nil)
 }
 

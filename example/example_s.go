@@ -30,3 +30,18 @@ func main() {
     }
     s.Start()
 }
+
+/*
+// Run in Chrome Console
+var sock = new WebSocket("ws://127.0.0.1:8080");
+sock.onopen = function() {
+    console.log("connected");
+}
+sock.onclose = function(e) {
+    console.log("connection closed (" + e.code + ")");
+}
+sock.onmessage = function(e) {
+    console.log("message received: " + e.data);
+}
+sock.send("Hello")
+*/

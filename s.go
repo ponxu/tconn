@@ -31,10 +31,11 @@ type ProtocolAdapter interface {
 }
 
 type Server struct {
-    Protocol string
-    Addr     string
-    Adapter  ProtocolAdapter
-    Handler  Handler
+    Protocol     string
+    Addr         string
+    WSEnterPoint string
+    Adapter      ProtocolAdapter
+    Handler      Handler
 }
 
 func (s *Server) Start() {
